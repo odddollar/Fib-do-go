@@ -6,6 +6,17 @@ import (
 	"time"
 )
 
+// Calculate nth fibonacci number
+func fib(n int) int {
+	// Base case
+	if n <= 1 {
+		return n
+	}
+
+	// Recursively calculate number
+	return fib(n-1) + fib(n-2)
+}
+
 // Worker pulls next task off tasks queue and executes. Finishes when
 // no more tasks
 func worker(id int, tasks <-chan int, wg *sync.WaitGroup) {
@@ -15,7 +26,7 @@ func worker(id int, tasks <-chan int, wg *sync.WaitGroup) {
 	// Pull next task off queue
 	for task := range tasks {
 		fmt.Printf("Worker %d performing task %d\n", id, task)
-		time.Sleep(time.Duration(task) * time.Second)
+		_ = fib(task)
 		fmt.Printf("Worker %d completed task %d\n", id, task)
 	}
 }
