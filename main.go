@@ -21,6 +21,9 @@ func worker(id int, tasks <-chan int, wg *sync.WaitGroup) {
 }
 
 func main() {
+	// Save start time
+	start := time.Now()
+
 	// Number of workers and tasks
 	const numWorkers = 16
 	const numTasks = 32
@@ -50,4 +53,8 @@ func main() {
 
 	// Wait for all workers to finish
 	wg.Wait()
+
+	// Print elapsed time
+	elapsed := time.Since(start)
+	fmt.Printf("Time taken: %s\n", elapsed)
 }
