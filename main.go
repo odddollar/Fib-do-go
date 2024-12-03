@@ -57,4 +57,8 @@ func main() {
 	// Print elapsed time
 	elapsed := time.Since(start)
 	fmt.Printf("Time taken: %s\n", elapsed)
+
+	// Wait for keypress to exit
+	fmt.Print("Press ENTER to exit")
+	fmt.Scanln()
 }
