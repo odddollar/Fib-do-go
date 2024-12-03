@@ -35,9 +35,12 @@ func main() {
 	// Save start time
 	start := time.Now()
 
-	// Number of workers and tasks
-	const numWorkers = 16
-	const numTasks = 32
+	// Constants to adjust benchmark
+	const numWorkers = 30
+	const numTasks = 200
+	const fibMin = 40
+	const fibMax = 45
+	const fibDiff = fibMax - fibMin
 
 	// Create buffered channel to hold tasks. Acts like a queue
 	tasks := make(chan int, numTasks)
@@ -46,8 +49,8 @@ func main() {
 	var wg sync.WaitGroup
 
 	// Push tasks onto queue
-	for i := 1; i <= numTasks; i++ {
-		tasks <- i
+	for i := 0; i < numTasks; i++ {
+		tasks <- fibMin + (i % fibDiff)
 	}
 
 	// Spawn workers
