@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"os"
 
@@ -53,11 +52,15 @@ func main() {
 	if runParser.Happened() {
 		// Check validity of cli values
 		if *numTasks <= 0 {
-			fmt.Print(parser.Usage(errors.New("[-t|--tasks] value must be greater than 0")))
+			fmt.Print(parser.Usage(fmt.Errorf("[-t|--tasks] value must be greater than 0 [%d]", *numTasks)))
 			return
 		}
 		if *numWorkers <= 0 {
-			fmt.Print(parser.Usage(errors.New("[-w|--workers] value must be greater than 0")))
+			fmt.Print(parser.Usage(fmt.Errorf("[-w|--workers] value must be greater than 0 [%d]", *numWorkers)))
+			return
+		}
+		if *fibMin >= *fibMax {
+			fmt.Print(parser.Usage(fmt.Errorf("[-n|--min] [-x|--max] min must be less than max [%d] [%d]", *fibMin, *fibMax)))
 			return
 		}
 
