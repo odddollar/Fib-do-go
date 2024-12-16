@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
 
@@ -50,6 +51,16 @@ func main() {
 
 	// Select by command
 	if runParser.Happened() {
+		// Check validity of cli values
+		if *numTasks <= 0 {
+			fmt.Print(parser.Usage(errors.New("[-t|--tasks] value must be greater than 0")))
+			return
+		}
+		if *numWorkers <= 0 {
+			fmt.Print(parser.Usage(errors.New("[-w|--workers] value must be greater than 0")))
+			return
+		}
+
 		// Run benchmark
 		run(*numTasks, *numWorkers, *fibMin, *fibMax)
 	} else if aboutParser.Happened() {
