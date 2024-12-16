@@ -6,16 +6,17 @@ import (
 	"time"
 )
 
+// Default values used for benchmark
+const (
+	numWorkers = 30
+	numTasks   = 200
+	fibMin     = 40
+	fibMax     = 45
+)
+
 func main() {
 	// Save start time
 	start := time.Now()
-
-	// Constants to adjust benchmark
-	const numWorkers = 30
-	const numTasks = 200
-	const fibMin = 40
-	const fibMax = 45
-	const fibDiff = fibMax - fibMin
 
 	// Create buffered channel to hold tasks. Acts like a queue
 	tasks := make(chan int, numTasks)
@@ -25,7 +26,7 @@ func main() {
 
 	// Push tasks onto queue
 	for i := 0; i < numTasks; i++ {
-		tasks <- fibMin + (i % fibDiff)
+		tasks <- fibMin + (i % (fibMax - fibMin))
 	}
 
 	// Spawn workers
