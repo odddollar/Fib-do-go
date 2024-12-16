@@ -20,10 +20,22 @@ func main() {
 	parser := argparse.NewParser("fib-dot-go", "CPU benchmark that calculates fibonacci numbers")
 
 	// Create arguments
-	numTasks := parser.Int("t", "tasks", &argparse.Options{Default: defaultNumTasks})
-	numWorkers := parser.Int("w", "workers", &argparse.Options{Default: defaultNumWorkers})
-	fibMin := parser.Int("m", "min", &argparse.Options{Default: defaultFibMin})
-	fibMax := parser.Int("x", "max", &argparse.Options{Default: defaultFibMax})
+	numTasks := parser.Int("t", "tasks", &argparse.Options{
+		Default: defaultNumTasks,
+		Help:    "Total number of fibonacci numbers to calculate",
+	})
+	numWorkers := parser.Int("w", "workers", &argparse.Options{
+		Default: defaultNumWorkers,
+		Help:    "Number of worker threads to spawn",
+	})
+	fibMin := parser.Int("n", "min", &argparse.Options{
+		Default: defaultFibMin,
+		Help:    "Minimum fibonacci number to calculate",
+	})
+	fibMax := parser.Int("x", "max", &argparse.Options{
+		Default: defaultFibMax,
+		Help:    "Maximum fibonacci number to calculate",
+	})
 
 	// Parse cli input
 	err := parser.Parse(os.Args)
