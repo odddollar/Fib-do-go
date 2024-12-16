@@ -48,14 +48,11 @@ func main() {
 		return
 	}
 
+	// Select by command
 	if runParser.Happened() {
 		// Run benchmark
 		run(*numTasks, *numWorkers, *fibMin, *fibMax)
 	} else if aboutParser.Happened() {
-		return
+		showAbout()
 	}
-
-	// Wait for keypress to exit
-	fmt.Print("Press ENTER to exit")
-	fmt.Scanln()
 }
