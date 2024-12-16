@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func run(numWorkers, numTasks, fibMin, fibMax int) {
+func run(numTasks, numWorkers, fibMin, fibMax int) {
 	// Save start time
 	start := time.Now()
 

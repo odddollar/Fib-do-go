@@ -9,8 +9,8 @@ import (
 
 // Default values used for benchmark
 const (
-	defaultNumWorkers = 30
 	defaultNumTasks   = 200
+	defaultNumWorkers = 30
 	defaultFibMin     = 40
 	defaultFibMax     = 45
 )
@@ -20,8 +20,8 @@ func main() {
 	parser := argparse.NewParser("fib-dot-go", "CPU benchmark that calculates fibonacci numbers")
 
 	// Create arguments
-	numWorkers := parser.Int("w", "workers", &argparse.Options{Default: defaultNumWorkers})
 	numTasks := parser.Int("t", "tasks", &argparse.Options{Default: defaultNumTasks})
+	numWorkers := parser.Int("w", "workers", &argparse.Options{Default: defaultNumWorkers})
 	fibMin := parser.Int("m", "min", &argparse.Options{Default: defaultFibMin})
 	fibMax := parser.Int("x", "max", &argparse.Options{Default: defaultFibMax})
 
@@ -33,5 +33,5 @@ func main() {
 	}
 
 	// Run benchmark
-	run(*numWorkers, *numTasks, *fibMin, *fibMax)
+	run(*numTasks, *numWorkers, *fibMin, *fibMax)
 }
