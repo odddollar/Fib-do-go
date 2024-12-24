@@ -38,5 +38,5 @@ func run(numTasks, numWorkers, fibMin, fibMax int) {
 
 	// Print elapsed time
 	elapsed := time.Since(start)
-	fmt.Printf("Time taken: %s\n", elapsed)
+	fmt.Printf("Time taken: %.3fs\n", elapsed.Seconds())
 }
