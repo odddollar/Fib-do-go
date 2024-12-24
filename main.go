@@ -16,6 +16,9 @@ const (
 	defaultFibMax     = 45
 )
 
+// Global progress bar used by several functions
+var bar *progressbar.ProgressBar
+
 func main() {
 	// Create main argument parser
 	parser := argparse.NewParser("fib-dot-go", "CPU benchmark that calculates fibonacci numbers")
@@ -69,7 +72,6 @@ func main() {
 		}
 
 		// Create progress bar if not minimal
-		var bar *progressbar.ProgressBar
 		if !*minimal {
 			bar = progressbar.NewOptions(*numTasks,
 				progressbar.OptionShowCount(),
@@ -87,7 +89,7 @@ func main() {
 		}
 
 		// Run benchmark
-		run(*numTasks, *numWorkers, *fibMin, *fibMax, bar, *minimal)
+		run(*numTasks, *numWorkers, *fibMin, *fibMax, *minimal)
 	} else if aboutParser.Happened() {
 		showAbout()
 	}

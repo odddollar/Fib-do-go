@@ -2,13 +2,11 @@ package main
 
 import (
 	"sync"
-
-	"github.com/schollz/progressbar/v3"
 )
 
 // Worker pulls next task off tasks queue and executes. Finishes when
 // no more tasks
-func worker(tasks <-chan int, wg *sync.WaitGroup, bar *progressbar.ProgressBar) {
+func worker(tasks <-chan int, wg *sync.WaitGroup) {
 	// Complete when no more tasks
 	defer wg.Done()
 
@@ -16,6 +14,7 @@ func worker(tasks <-chan int, wg *sync.WaitGroup, bar *progressbar.ProgressBar) 
 	for task := range tasks {
 		_ = fib(task)
 
+		// Update progress bar
 		if bar != nil {
 			bar.Add(1)
 		}
