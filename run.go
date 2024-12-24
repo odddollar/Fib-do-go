@@ -4,9 +4,11 @@ import (
 	"fmt"
 	"sync"
 	"time"
+
+	"github.com/schollz/progressbar/v3"
 )
 
-func run(numTasks, numWorkers, fibMin, fibMax int) {
+func run(numTasks, numWorkers, fibMin, fibMax int, bar *progressbar.ProgressBar) {
 	// Save start time
 	start := time.Now()
 
@@ -26,8 +28,8 @@ func run(numTasks, numWorkers, fibMin, fibMax int) {
 		// Increment wait group
 		wg.Add(1)
 
-		// Give worker id, task channel, and wait group
-		go worker(i, tasks, &wg)
+		// Give worker task channel, wait group, and progress bar
+		go worker(tasks, &wg, bar)
 	}
 
 	// Close channel when no more tasks
@@ -38,5 +40,5 @@ func run(numTasks, numWorkers, fibMin, fibMax int) {
 
 	// Print elapsed time
 	elapsed := time.Since(start)
-	fmt.Printf("Time taken: %.3fs\n", elapsed.Seconds())
+	fmt.Printf("Time taken: %.3fs\n\n", elapsed.Seconds())
 }

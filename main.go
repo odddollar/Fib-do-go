@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/akamensky/argparse"
+	"github.com/schollz/progressbar/v3"
 )
 
 // Default values used for benchmark
@@ -64,8 +65,23 @@ func main() {
 			return
 		}
 
+		// Create progress bar
+		bar := progressbar.NewOptions(*numTasks,
+			progressbar.OptionShowCount(),
+			progressbar.OptionSetWidth(60),
+			progressbar.OptionSetRenderBlankState(true),
+			progressbar.OptionSetTheme(progressbar.Theme{
+				Saucer:        "=",
+				SaucerHead:    ">",
+				SaucerPadding: " ",
+				BarStart:      "[",
+				BarEnd:        "]",
+			}),
+			progressbar.OptionOnCompletion(func() { fmt.Println() }),
+		)
+
 		// Run benchmark
-		run(*numTasks, *numWorkers, *fibMin, *fibMax)
+		run(*numTasks, *numWorkers, *fibMin, *fibMax, bar)
 	} else if aboutParser.Happened() {
 		showAbout()
 	}
