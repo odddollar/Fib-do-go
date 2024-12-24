@@ -34,11 +34,11 @@ func main() {
 	})
 	fibMin := runParser.Int("n", "min", &argparse.Options{
 		Default: defaultFibMin,
-		Help:    "Minimum fibonacci number to calculate",
+		Help:    "Minimum fibonacci number to calculate (inclusive)",
 	})
 	fibMax := runParser.Int("x", "max", &argparse.Options{
 		Default: defaultFibMax,
-		Help:    "Maximum fibonacci number to calculate",
+		Help:    "Maximum fibonacci number to calculate (exclusive)",
 	})
 
 	// Parse cli input
