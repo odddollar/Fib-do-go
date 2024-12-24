@@ -41,6 +41,9 @@ func main() {
 		Default: defaultFibMax,
 		Help:    "Maximum fibonacci number to calculate (exclusive)",
 	})
+	minimal := runParser.Flag("m", "minimal", &argparse.Options{
+		Help: "Only display completion time",
+	})
 
 	// Parse cli input
 	err := parser.Parse(os.Args)
@@ -65,23 +68,26 @@ func main() {
 			return
 		}
 
-		// Create progress bar
-		bar := progressbar.NewOptions(*numTasks,
-			progressbar.OptionShowCount(),
-			progressbar.OptionSetWidth(60),
-			progressbar.OptionSetRenderBlankState(true),
-			progressbar.OptionSetTheme(progressbar.Theme{
-				Saucer:        "=",
-				SaucerHead:    ">",
-				SaucerPadding: " ",
-				BarStart:      "[",
-				BarEnd:        "]",
-			}),
-			progressbar.OptionOnCompletion(func() { fmt.Println() }),
-		)
+		// Create progress bar if not minimal
+		var bar *progressbar.ProgressBar
+		if !*minimal {
+			bar = progressbar.NewOptions(*numTasks,
+				progressbar.OptionShowCount(),
+				progressbar.OptionSetWidth(60),
+				progressbar.OptionSetRenderBlankState(true),
+				progressbar.OptionSetTheme(progressbar.Theme{
+					Saucer:        "=",
+					SaucerHead:    ">",
+					SaucerPadding: " ",
+					BarStart:      "[",
+					BarEnd:        "]",
+				}),
+				progressbar.OptionOnCompletion(func() { fmt.Println() }),
+			)
+		}
 
 		// Run benchmark
-		run(*numTasks, *numWorkers, *fibMin, *fibMax, bar)
+		run(*numTasks, *numWorkers, *fibMin, *fibMax, bar, *minimal)
 	} else if aboutParser.Happened() {
 		showAbout()
 	}

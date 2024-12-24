@@ -8,7 +8,7 @@ import (
 	"github.com/schollz/progressbar/v3"
 )
 
-func run(numTasks, numWorkers, fibMin, fibMax int, bar *progressbar.ProgressBar) {
+func run(numTasks, numWorkers, fibMin, fibMax int, bar *progressbar.ProgressBar, minimal bool) {
 	// Save start time
 	start := time.Now()
 
@@ -40,5 +40,9 @@ func run(numTasks, numWorkers, fibMin, fibMax int, bar *progressbar.ProgressBar)
 
 	// Print elapsed time
 	elapsed := time.Since(start)
-	fmt.Printf("Time taken: %.3fs\n\n", elapsed.Seconds())
+	if minimal {
+		fmt.Printf("%.3f", elapsed.Seconds())
+	} else {
+		fmt.Printf("Time taken: %.3fs\n\n", elapsed.Seconds())
+	}
 }

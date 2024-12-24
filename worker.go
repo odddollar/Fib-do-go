@@ -15,6 +15,9 @@ func worker(tasks <-chan int, wg *sync.WaitGroup, bar *progressbar.ProgressBar) 
 	// Pull next task off queue
 	for task := range tasks {
 		_ = fib(task)
-		bar.Add(1)
+
+		if bar != nil {
+			bar.Add(1)
+		}
 	}
 }

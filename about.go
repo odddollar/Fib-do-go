@@ -21,7 +21,8 @@ calculate that fibonacci number. Once this task has been completed, the worker
 pulls the next task until all tasks have been pulled from the queue. A single
 shared queue is used by all workers.
 
-On exhaustion of all tasks, the time taken to complete the benchmark is reported.
+On exhaustion of all tasks, the time taken to complete the benchmark is reported
+in seconds.
 
 Arguments:
   -t  --tasks    Controls the number of tasks to complete, and thus the overall
