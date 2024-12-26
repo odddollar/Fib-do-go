@@ -1,4 +1,6 @@
 *.exe
 *.bat
 *.csv
+*.zip
+*.xlsx
 todo.txt
