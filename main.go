@@ -49,7 +49,7 @@ func main() {
 		Help: "Only display completion time",
 	})
 
-	// Create cpu argument
+	// Create CPU argument
 	cpuMinimal := cpuParser.Flag("m", "minimal", &argparse.Options{
 		Help: "Only display CPU name and core-count",
 	})
