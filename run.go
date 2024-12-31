@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+// Run benchmark with given parameters
 func run(numTasks, numWorkers, fibMin, fibMax int, minimal bool) {
 	// Save start time
 	start := time.Now()
