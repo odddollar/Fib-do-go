@@ -26,26 +26,32 @@ func main() {
 	// Create command parsers
 	runParser := parser.NewCommand("run", "Run benchmark with settable options")
 	aboutParser := parser.NewCommand("about", "Display about/help information")
+	cpuParser := parser.NewCommand("cpu", "Display CPU information and utilisation")
 
 	// Create run arguments
-	numTasks := runParser.Int("t", "tasks", &argparse.Options{
+	runNumTasks := runParser.Int("t", "tasks", &argparse.Options{
 		Default: defaultNumTasks,
 		Help:    "Total number of fibonacci numbers to calculate",
 	})
-	numWorkers := runParser.Int("w", "workers", &argparse.Options{
+	runNumWorkers := runParser.Int("w", "workers", &argparse.Options{
 		Default: defaultNumWorkers,
 		Help:    "Number of worker threads to spawn",
 	})
-	fibMin := runParser.Int("n", "min", &argparse.Options{
+	runFibMin := runParser.Int("n", "min", &argparse.Options{
 		Default: defaultFibMin,
 		Help:    "Minimum fibonacci number to calculate (inclusive)",
 	})
-	fibMax := runParser.Int("x", "max", &argparse.Options{
+	runFibMax := runParser.Int("x", "max", &argparse.Options{
 		Default: defaultFibMax,
 		Help:    "Maximum fibonacci number to calculate (exclusive)",
 	})
-	minimal := runParser.Flag("m", "minimal", &argparse.Options{
+	runMinimal := runParser.Flag("m", "minimal", &argparse.Options{
 		Help: "Only display completion time",
+	})
+
+	// Create cpu argument
+	cpuMinimal := cpuParser.Flag("m", "minimal", &argparse.Options{
+		Help: "Only display CPU name and core-count",
 	})
 
 	// Parse cli input
@@ -58,22 +64,22 @@ func main() {
 	// Select by command
 	if runParser.Happened() {
 		// Check validity of cli values
-		if *numTasks <= 0 {
-			fmt.Print(parser.Usage(fmt.Errorf("[-t|--tasks] value must be greater than 0 [%d]", *numTasks)))
+		if *runNumTasks <= 0 {
+			fmt.Print(parser.Usage(fmt.Errorf("[-t|--tasks] value must be greater than 0 [%d]", *runNumTasks)))
 			return
 		}
-		if *numWorkers <= 0 {
-			fmt.Print(parser.Usage(fmt.Errorf("[-w|--workers] value must be greater than 0 [%d]", *numWorkers)))
+		if *runNumWorkers <= 0 {
+			fmt.Print(parser.Usage(fmt.Errorf("[-w|--workers] value must be greater than 0 [%d]", *runNumWorkers)))
 			return
 		}
-		if *fibMin >= *fibMax {
-			fmt.Print(parser.Usage(fmt.Errorf("[-n|--min] [-x|--max] min must be less than max [%d] [%d]", *fibMin, *fibMax)))
+		if *runFibMin >= *runFibMax {
+			fmt.Print(parser.Usage(fmt.Errorf("[-n|--min] [-x|--max] min must be less than max [%d] [%d]", *runFibMin, *runFibMax)))
 			return
 		}
 
 		// Create progress bar if not minimal
-		if !*minimal {
-			bar = progressbar.NewOptions(*numTasks,
+		if !*runMinimal {
+			bar = progressbar.NewOptions(*runNumTasks,
 				progressbar.OptionShowCount(),
 				progressbar.OptionSetWidth(60),
 				progressbar.OptionSetRenderBlankState(true),
@@ -89,8 +95,10 @@ func main() {
 		}
 
 		// Run benchmark
-		run(*numTasks, *numWorkers, *fibMin, *fibMax, *minimal)
+		run(*runNumTasks, *runNumWorkers, *runFibMin, *runFibMax, *runMinimal)
 	} else if aboutParser.Happened() {
 		showAbout()
+	} else if cpuParser.Happened() {
+		showCPU(*cpuMinimal)
 	}
 }
