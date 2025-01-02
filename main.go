@@ -90,7 +90,6 @@ func main() {
 					BarStart:      "[",
 					BarEnd:        "]",
 				}),
-				progressbar.OptionOnCompletion(func() { fmt.Println() }),
 			)
 		}
 

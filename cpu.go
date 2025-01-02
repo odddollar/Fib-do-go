@@ -32,7 +32,6 @@ func showCPU(minimal bool) {
 		return
 	}
 	fmt.Println("Threads:", logical)
-	fmt.Println()
 
 	// Get CPU usage
 	if !minimal {
@@ -43,9 +42,8 @@ func showCPU(minimal bool) {
 				break
 			}
 
-			if len(percentages) > 0 {
-				fmt.Printf("CPU Usage: %.2f%%\n", percentages[0])
-			}
+			// Print cpu usage on same line
+			fmt.Printf("\rCPU Usage: %.2f%%", percentages[0])
 		}
 	}
 }

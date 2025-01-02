@@ -42,6 +42,6 @@ func run(numTasks, numWorkers, fibMin, fibMax int, minimal bool) {
 	if minimal {
 		fmt.Printf("%.3f", elapsed.Seconds())
 	} else {
-		fmt.Printf("Time taken: %.3fs\n\n", elapsed.Seconds())
+		fmt.Printf("\nTime taken: %.3fs\n\n", elapsed.Seconds())
 	}
 }
