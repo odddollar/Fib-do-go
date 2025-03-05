@@ -52,3 +52,11 @@ pause
 
 ## Building
 
+The program can be built from source with:
+
+```
+git clone https://github.com/odddollar/Fib-dot-go.git
+cd Fib-dot-go
+go build
+```
+
