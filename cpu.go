@@ -31,7 +31,7 @@ func showCPU(minimal bool) {
 		fmt.Println("Error retrieving CPU thread-count:", err)
 		return
 	}
-	fmt.Println("Threads:", logical)
+	fmt.Printf("Threads: %d\n\n", logical)
 
 	// Get CPU usage
 	if !minimal {
