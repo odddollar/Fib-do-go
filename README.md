@@ -8,11 +8,21 @@ For example, with a minimum Fibonacci number of 40, a maximum of 45, and 200 tas
 
 Fib Dot Go has the sub-commands `run`, `about`, and `cpu`.
 
-### 
+### `run`
 
-### Script
 
-A script can be used to run the benchmark with multiple input parameters, specifying the `-m` flag to the `run` command to allow for easy logging of the result to a file. The example script shown below can be used to determine at which point increasing the number of worker threads doesn't result in any speed improvements. The list of arguments can be further modified to test other variations of arguments.
+
+### `about`
+
+Displays about information, including a description of how the program works, and what each parameter controls in the benchmark.
+
+### `cpu`
+
+Displays CPU information, including make and model, number of cores, and number of threads. By default will also show a live display of the current CPU utilisation, but this can be disabled by specifying the `-m` flag.
+
+## Script
+
+A script can be used to run the benchmark with multiple input parameters, specifying the `-m` flag to the `run` command to allow for easy logging of the result to a `.csv` file. The example script shown below can be used to determine at what point increasing the number of worker threads doesn't result in any speed improvements. The list of arguments can be further modified to test other variations of parameters.
 
 ```bat
 @echo off
@@ -37,7 +47,7 @@ for %%T in (%TASKS%) do (
         for %%N in (%MIN%) do (
             for %%X in (%MAX%) do (
                 :: Run command with current arguments
-                for /f "delims=" %%i in ('fib-dot-go run -t %%T -w %%W -n %%N -x %%X -m') do (
+                for /f "delims=" %%i in ('Fib-dot-go run -t %%T -w %%W -n %%N -x %%X -m') do (
                     echo %%T,%%W,%%N,%%X,%%i >> %FILE%
                     echo Done %%T,%%W,%%N,%%X,%%i
                 )

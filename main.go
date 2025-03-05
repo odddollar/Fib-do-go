@@ -21,7 +21,7 @@ var bar *progressbar.ProgressBar
 
 func main() {
 	// Create main argument parser
-	parser := argparse.NewParser("fib-dot-go", "CPU benchmark that calculates Fibonacci numbers")
+	parser := argparse.NewParser("Fib-dot-go", "CPU benchmark that calculates Fibonacci numbers")
 
 	// Create command parsers
 	runParser := parser.NewCommand("run", "Run benchmark with settable options")
