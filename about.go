@@ -33,7 +33,7 @@ Arguments:
   -n  --min      Controls the minimum difficulty of possible tasks. Increasing
                  this raises the baseline difficulty of the benchmark.
   -x  --max      Controls the maximum difficulty of possible tasks and the overall
-                 range of task difficulty. A greater difficulty range means that
+                 range of task difficulty. A larger difficulty range means that
                  some workers get significantly easier tasks than others, whilst
                  some get significantly harder tasks.
 `

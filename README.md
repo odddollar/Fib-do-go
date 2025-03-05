@@ -8,9 +8,20 @@ For example, with a minimum Fibonacci number of 40, a maximum of 45, and 200 tas
 
 Fib Dot Go has the sub-commands `run`, `about`, and `cpu`.
 
+Run the program with `Fib-do-go [SUB-COMMAND]`.
+
 ### `run`
 
+Run the benchmark and time how long it takes to complete. A progress bar is displayed to show the current progress. Specifying the `run` sub-command without any additional parameters will run the benchmark with a set of defaults.
 
+Parameters:
+
+- `-t` - Total number of Fibonacci numbers to calculate. Controls the overall length of the benchmark. **Default**: 200
+- `-w` - Number of worker threads to spawn. Controls how multithreaded the benchmark is. Increasing this decreases the time taken, but only up to a certain point. Increase this value for higher core-count CPUs to maximise utilisation. **Default**: 30
+- `-n` - Minimum Fibonacci number to calculate (inclusive). Controls the minimum difficulty of possible tasks. Increasing this raises the baseline difficulty of the benchmark. **Default**: 40
+- `-x` - Maximum Fibonacci number to calculate (exclusive). Controls the maximum difficulty of possible tasks and the overall range of task difficulty. A larger difficulty range means that some workers get significantly easier tasks than others, whilst some get significantly harder tasks. **Default**: 45
+
+The `-m` flag is also available to run the benchmark in minimal mode, only displaying the time taken to complete. A script is provided below to experiment with how different parameter values affect the time taken to complete the benchmark.
 
 ### `about`
 
