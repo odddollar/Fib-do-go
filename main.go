@@ -77,8 +77,11 @@ func main() {
 			return
 		}
 
-		// Create progress bar if not minimal
 		if !*runMinimal {
+			// Print minimal cpu information
+			showCPU(true)
+
+			// Create progress bar if not minimal
 			bar = progressbar.NewOptions(*runNumTasks,
 				progressbar.OptionShowCount(),
 				progressbar.OptionSetWidth(60),
