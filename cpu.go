@@ -43,6 +43,7 @@ func showCPU(minimal bool) {
 			}
 
 			// Print cpu usage on same line
+			fmt.Print("\r                  ")
 			fmt.Printf("\rCPU Usage: %.2f%%", percentages[0])
 		}
 	}
