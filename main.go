@@ -21,7 +21,7 @@ var bar *progressbar.ProgressBar
 
 func main() {
 	// Create main argument parser
-	parser := argparse.NewParser("fib-dot-go", "CPU benchmark that calculates fibonacci numbers")
+	parser := argparse.NewParser("fib-dot-go", "CPU benchmark that calculates Fibonacci numbers")
 
 	// Create command parsers
 	runParser := parser.NewCommand("run", "Run benchmark with settable options")
@@ -31,7 +31,7 @@ func main() {
 	// Create run arguments
 	runNumTasks := runParser.Int("t", "tasks", &argparse.Options{
 		Default: defaultNumTasks,
-		Help:    "Total number of fibonacci numbers to calculate",
+		Help:    "Total number of Fibonacci numbers to calculate",
 	})
 	runNumWorkers := runParser.Int("w", "workers", &argparse.Options{
 		Default: defaultNumWorkers,
@@ -39,11 +39,11 @@ func main() {
 	})
 	runFibMin := runParser.Int("n", "min", &argparse.Options{
 		Default: defaultFibMin,
-		Help:    "Minimum fibonacci number to calculate (inclusive)",
+		Help:    "Minimum Fibonacci number to calculate (inclusive)",
 	})
 	runFibMax := runParser.Int("x", "max", &argparse.Options{
 		Default: defaultFibMax,
-		Help:    "Maximum fibonacci number to calculate (exclusive)",
+		Help:    "Maximum Fibonacci number to calculate (exclusive)",
 	})
 	runMinimal := runParser.Flag("m", "minimal", &argparse.Options{
 		Help: "Only display completion time",

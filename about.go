@@ -6,18 +6,18 @@ import (
 
 // Print about information
 func showAbout() {
-	aboutString := `Fib-dot-go is a multithreaded CPU benchmark that aims to assess processor
-performance in calculating fibonacci numbers. There is a queue of tasks that
+	aboutString := `Fib Dot Go is a multithreaded CPU benchmark that aims to assess processor
+performance in calculating Fibonacci numbers. There is a queue of tasks that
 worker threads pull from, where each task consists of recursively calculating
-a large fibonacci number.
+a large Fibonacci number.
 
-For example, with a minimum fibonacci number of 40, a maximum of 45, and 200
-tasks, calculating the 40th fibonacci number is pushed onto a queue. Calculating
+For example, with a minimum Fibonacci number of 40, a maximum of 45, and 200
+tasks, calculating the 40th Fibonacci number is pushed onto a queue. Calculating
 the 41st number is pushed next, then the 42nd, etc., until the 44th number is
 pushed. The 40th number is then pushed again and the loop repeats until a total
 of 200 tasks exist in the queue. The queue would appear as [40 41 42 43 44 40
 41 42 43 ...]. Worker threads pull the next available task from this queue and
-calculate that fibonacci number. Once this task has been completed, the worker
+calculate that Fibonacci number. Once this task has been completed, the worker
 pulls the next task until all tasks have been pulled from the queue. A single
 shared queue is used by all workers.
 

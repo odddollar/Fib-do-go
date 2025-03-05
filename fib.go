@@ -1,6 +1,6 @@
 package main
 
-// Calculate nth fibonacci number
+// Calculate nth Fibonacci number
 func fib(n int) int {
 	// Base case
 	if n <= 1 {
