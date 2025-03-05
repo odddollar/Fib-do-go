@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/shirou/gopsutil/v3/cpu"
+	"github.com/shirou/gopsutil/v4/cpu"
 )
 
 // Print CPU model, core and thread-count, and usage
